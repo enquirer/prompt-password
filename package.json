@@ -10,9 +10,7 @@
   },
   "license": "MIT",
   "files": [
-    "index.js",
-    "LICENSE",
-    "README.md"
+    "index.js"
   ],
   "main": "index.js",
   "engines": {
@@ -22,11 +20,12 @@
     "test": "mocha"
   },
   "dependencies": {
-    "log-utils": "^0.2.1",
-    "prompt-base": "^0.3.2"
+    "ansi-cyan": "^0.1.1",
+    "ansi-red": "^0.1.1",
+    "prompt-base": "^0.5.0"
   },
   "devDependencies": {
-    "enquirer": "^0.2.0",
+    "enquirer": "^0.3.1",
     "gulp-format-md": "^0.1.10"
   },
   "keywords": [
@@ -59,12 +58,12 @@
   "verb": {
     "toc": false,
     "layout": "common-minimal",
-    "data": {
-      "alias": "password"
-    },
     "tasks": [
       "readme"
     ],
+    "data": {
+      "alias": "password"
+    },
     "plugins": [
       "gulp-format-md"
     ],

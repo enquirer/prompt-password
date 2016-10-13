@@ -2,7 +2,8 @@
 
 var util = require('util');
 var Prompt = require('prompt-base');
-var log = require('log-utils');
+var cyan = require('ansi-cyan');
+var red = require('ansi-red');
 
 /**
  * `password` type prompt
@@ -39,9 +40,9 @@ Password.prototype.ask = function(cb) {
 
 Password.prototype.render = function(error) {
   var message = this.message;
-  var append = error ? ('\n' + log.red('>> ') + error) : '';
+  var append = error ? ('\n' + red('>> ') + error) : '';
   if (this.status === 'answered') {
-    message += log.cyan(mask(this.answer));
+    message += cyan(mask(this.answer));
   } else {
     message += mask(this.rl.line || '');
   }
@@ -57,6 +58,10 @@ Password.prototype.onSubmit = function(input) {
   this.status = 'answered';
   this.submitAnswer();
 };
+
+/**
+ * When an error is emitted
+ */
 
 Password.prototype.onError = function(answer) {
   this.render(answer.isValid);
