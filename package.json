@@ -1,12 +1,12 @@
 {
-  "name": "enquirer-prompt-password",
-  "description": "Password prompt plugin for Enquirer.",
+  "name": "prompt-password",
+  "description": "Password prompt. Can be used as a standalone prompt, or with a prompt system like [Enquirer].",
   "version": "0.1.0",
-  "homepage": "https://github.com/jonschlinkert/enquirer-prompt-password",
+  "homepage": "https://github.com/enquirer/prompt-password",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
-  "repository": "jonschlinkert/enquirer-prompt-password",
+  "repository": "enquirer/prompt-password",
   "bugs": {
-    "url": "https://github.com/jonschlinkert/enquirer-prompt-password/issues"
+    "url": "https://github.com/enquirer/prompt-password/issues"
   },
   "license": "MIT",
   "files": [
@@ -21,6 +21,14 @@
   "scripts": {
     "test": "mocha"
   },
+  "dependencies": {
+    "log-utils": "^0.2.1",
+    "prompt-base": "^0.3.2"
+  },
+  "devDependencies": {
+    "enquirer": "^0.2.0",
+    "gulp-format-md": "^0.1.10"
+  },
   "keywords": [
     "answer",
     "answers",
@@ -29,6 +37,7 @@
     "choice",
     "cli",
     "command",
+    "enquirer",
     "enquirerprompt",
     "input",
     "inquire",
@@ -47,7 +56,32 @@
     "tty",
     "ui"
   ],
-  "dependencies": {
-    "log-utils": "^0.2.1"
+  "verb": {
+    "toc": false,
+    "layout": "common-minimal",
+    "data": {
+      "alias": "password"
+    },
+    "tasks": [
+      "readme"
+    ],
+    "plugins": [
+      "gulp-format-md"
+    ],
+    "related": {
+      "list": [
+        "enquirer",
+        "enquirer-prompt",
+        "enquirer-question"
+      ]
+    },
+    "reflinks": [
+      "enquirer",
+      "verb",
+      "verb-generate-readme"
+    ],
+    "lint": {
+      "reflinks": true
+    }
   }
 }
