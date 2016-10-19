@@ -27,8 +27,8 @@ util.inherits(Password, Prompt);
 
 Password.prototype.ask = function(cb) {
   this.callback = cb;
-  this.ui.once('line', this.onSubmit.bind(this));
-  this.ui.on('keypress', this.onKeypress.bind(this));
+  this.only('line', this.onSubmit.bind(this));
+  this.only('keypress', this.onKeypress.bind(this));
   this.once('error', this.onError.bind(this));
   this.render();
   return this;
@@ -55,10 +55,16 @@ Password.prototype.render = function(error) {
 
 Password.prototype.onSubmit = function(input) {
   this.answer = this.getAnswer(input);
-  this.status = 'answered';
-  this.submitAnswer();
+  var isValid = this.validate(this.answer);
+  if (isValid === true) {
+    this.only();
+    this.status = 'answered';
+    this.submitAnswer();
+  } else {
+    this.rl.line += '';
+    this.render(isValid);
+  }
 };
-
 /**
  * When an error is emitted
  */
