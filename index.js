@@ -1,6 +1,7 @@
 'use strict';
 
 var util = require('util');
+var debug = require('debug')('prompt-password');
 var Prompt = require('prompt-base');
 var cyan = require('ansi-cyan');
 var red = require('ansi-red');
@@ -10,37 +11,23 @@ var red = require('ansi-red');
  */
 
 function Password() {
-  return Prompt.apply(this, arguments);
+  Prompt.apply(this, arguments);
+  debug('initializing from <%s>', __filename);
 }
 
 /**
  * Inherit `Prompt`
  */
 
-util.inherits(Password, Prompt);
-
-/**
- * Start the prompt session
- * @param  {Function} `cb` Callback when prompt is finished
- * @return {Object} Returns the `Password` instance
- */
-
-Password.prototype.ask = function(cb) {
-  this.callback = cb;
-  this.only('line', this.onSubmit.bind(this));
-  this.only('keypress', this.onKeypress.bind(this));
-  this.once('error', this.onError.bind(this));
-  this.render();
-  return this;
-};
+Prompt.extend(Password);
 
 /**
  * Render the prompt to the terminal
  */
 
 Password.prototype.render = function(error) {
-  var message = this.message;
   var append = error ? ('\n' + red('>> ') + error) : '';
+  var message = this.message;
   if (this.status === 'answered') {
     message += cyan(mask(this.answer));
   } else {
@@ -50,54 +37,12 @@ Password.prototype.render = function(error) {
 };
 
 /**
- * When user presses the `enter` key
- */
-
-Password.prototype.onSubmit = function(input) {
-  this.answer = this.getAnswer(input);
-  var isValid = this.validate(this.answer);
-  if (isValid === true) {
-    this.only();
-    this.status = 'answered';
-    this.submitAnswer();
-  } else {
-    this.rl.line += '';
-    this.render(isValid);
-  }
-};
-/**
- * When an error is emitted
- */
-
-Password.prototype.onError = function(answer) {
-  this.render(answer.isValid);
-  this.rl.output.unmute();
-};
-
-/**
- * When a keypress is emitted (user types)
- */
-
-Password.prototype.onKeypress = function() {
-  this.render();
-};
-
-/**
- * When a keypress is emitted (user types)
- */
-
-Password.prototype.getAnswer = function(input) {
-  return input || this.question.default || '';
-};
-
-/**
- * Utils
+ * Mask password
  */
 
 function mask(input) {
   if (!input) return '';
-  input = String(input);
-  return new Array(input.length + 1).join('*');
+  return new Array(String(input).length + 1).join('*');
 }
 
 /**
