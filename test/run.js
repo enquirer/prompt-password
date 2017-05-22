@@ -36,7 +36,7 @@ describe('.run', function() {
     prompt.rl.input.emit('keypress', '\n');
   });
 
-  it('should emit multiple times for multiple characters', function(cb) {
+  it('should emit multiple keypresses for multiple characters', function(cb) {
     var count = 0;
     prompt.only('keypress', function() {
       count++;

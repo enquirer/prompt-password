@@ -23,6 +23,7 @@ describe('.ask', function() {
     });
 
     prompt.ask(function(answer) {
+      console.log([prompt.rl.line])
       assert.deepEqual(answer, 'foo');
       assert.equal(count, 4);
       cb();
