@@ -1,7 +1,7 @@
 {
   "name": "prompt-password",
   "description": "Password prompt. Can be used as a standalone prompt, or as a plugin for [Enquirer].",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "homepage": "https://github.com/enquirer/prompt-password",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "contributors": [
@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "debug": "^2.6.8",
-    "prompt-base": "^1.0.2"
+    "prompt-base": "^2.0.2"
   },
   "devDependencies": {
     "enquirer": "^0.4.1",
