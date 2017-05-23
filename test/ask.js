@@ -1,14 +1,19 @@
 'use strict';
 
+process.stdin.setMaxListeners(0);
+process.stdout.setMaxListeners(0);
+process.setMaxListeners(0);
+
 require('mocha');
 var assert = require('assert');
+var UI = require('readline-ui');
 var Prompt = require('..');
 var prompt;
 var unmute;
 
 describe('.ask', function() {
   beforeEach(function() {
-    prompt = new Prompt({name: 'fixture'});
+    prompt = new Prompt({name: 'fixture'}, {}, new UI());
     unmute = prompt.mute();
   });
 
@@ -23,7 +28,6 @@ describe('.ask', function() {
     });
 
     prompt.ask(function(answer) {
-      console.log([prompt.rl.line])
       assert.deepEqual(answer, 'foo');
       assert.equal(count, 4);
       cb();

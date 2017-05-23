@@ -1,15 +1,21 @@
 'use strict';
 
+process.stdin.setMaxListeners(0);
+process.stdout.setMaxListeners(0);
+process.setMaxListeners(0);
+
 require('mocha');
 var assert = require('assert');
+var UI = require('readline-ui');
 var Prompt = require('..');
 var prompt;
 var unmute;
 
 describe('.run', function() {
   beforeEach(function() {
-    prompt = new Prompt({name: 'fixture'});
-    unmute = prompt.mute();
+    var ui = new UI();
+    prompt = new Prompt({name: 'fixture'}, {}, ui);
+    unmute = ui.mute();
   });
 
   afterEach(function() {

@@ -6,7 +6,7 @@ var UI = require('readline-ui');
 var Prompt = require('..');
 var prompt;
 
-describe('prompt-base', function() {
+describe('prompt-password', function() {
   it('should export a function', function() {
     assert.equal(typeof Prompt, 'function');
   });
