@@ -25,11 +25,11 @@
   },
   "dependencies": {
     "debug": "^2.6.8",
-    "prompt-base": "^3.0.4"
+    "prompt-base": "^4.0.2"
   },
   "devDependencies": {
     "enquirer": "^1.0.2",
-    "gulp-format-md": "^0.1.12",
+    "gulp-format-md": "^1.0.0",
     "mocha": "^3.4.2",
     "prompt-password-strength": "^1.1.0",
     "readline-ui": "^2.2.3"

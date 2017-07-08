@@ -26,12 +26,6 @@ describe('prompt-password', function() {
     }, /expected question to be a string or object/);
   });
 
-  it('should throw an error when question.name is not a string', function() {
-    assert.throws(function() {
-      Prompt({});
-    }, /expected name to be a non-empty string/);
-  });
-
   it('should expose readline-ui on prompt.ui', function() {
     prompt = new Prompt({name: 'foo'});
     assert(prompt.ui);
